@@ -6,9 +6,9 @@
 * Q , quality factor controlling resonant peaking
 */
 #pragma once
-#include "filter_common.h"
+#include "biquad_q.h"
 
-class SO_HPF : public Biquad {
+class SO_HPF : public BiquadQ {
 public:
     tp_coeffs& calculate_coeffs(float Q, int fc, int fs)
     {

@@ -8,10 +8,10 @@
 * assume before peaking in the frequency response is observed.
 */
 #pragma once
-#include "filter_common.h"
+#include "biquad_simple.h"
 #include <complex>
 
-class SO_BUTTERWORTH_LPF : public Biquad {
+class SO_BUTTERWORTH_LPF : public BiquadSimple {
 public:
     tp_coeffs& calculate_coeffs(int fc, int fs)
     {

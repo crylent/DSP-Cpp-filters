@@ -18,9 +18,9 @@
 * for low-boost (or cut) values.
 */
 #pragma once
-#include "filter_common.h"
+#include "biquad_parametric.h"
 
-class SO_PARAMETRIC_CQ_CUT : public Biquad {
+class SO_PARAMETRIC_CQ_CUT : public BiquadParametric {
 public:
     tp_coeffs calculate_coeffs(float gain_db, float Q, int fc, int fs)
 	{

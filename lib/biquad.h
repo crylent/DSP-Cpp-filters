@@ -4,8 +4,26 @@
 *
 * fc, corner frequency
 */
+
 #pragma once
-#include "filter_common.h"
+
+#include <cmath>
+#include <functional>
+
+#define COEFF_SIZE_DOUBLE
+//#define COEFF_SIZE_FLOAT
+
+#ifndef pi
+#define pi  3.1415926535897932384626433832795
+#endif
+
+#ifndef sqrt2
+#define sqrt2	(2.0 * 0.707106781186547524401)
+#endif
+
+#ifndef sqrt2over2
+#define sqrt2over2  0.707106781186547524401
+#endif
 
 class Biquad {
 public:
@@ -18,7 +36,8 @@ public:
 
     Biquad() : m_xnz1(0), m_xnz2(0), m_ynz1(0), m_ynz2(0), m_offset(0), m_coeffs{0} {};
     virtual ~Biquad() {};
-    coef_size_t process(coef_size_t sample)
+
+    virtual coef_size_t process(coef_size_t sample)
     {
     	coef_size_t xn = sample;
     	coef_size_t yn = m_coeffs.a0*xn + m_coeffs.a1*m_xnz1 + m_coeffs.a2*m_xnz2

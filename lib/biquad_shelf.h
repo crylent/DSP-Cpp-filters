@@ -1,8 +1,10 @@
 #pragma once
 #include "biquad.h"
 
-class BiquadModified : public Biquad {
+class BiquadShelf : public Biquad {
 public:
+    virtual tp_coeffs& calculate_coeffs(float gain_db, int fc, int fs) = 0;
+
     coef_size_t process(coef_size_t sample)
     {
         coef_size_t xn = sample;

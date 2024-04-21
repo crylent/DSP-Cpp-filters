@@ -18,9 +18,9 @@
 * over whether or not this is desirable in an EQ design.
 */
 #pragma once
-#include "filter_common.h"
+#include "biquad_parametric.h"
 
-class SO_PARAMETRIC_NCQ : public Biquad {
+class SO_PARAMETRIC_NCQ : public BiquadParametric {
 public:
     tp_coeffs& calculate_coeffs(float gain_db, float Q, int fc, int fs)
     {

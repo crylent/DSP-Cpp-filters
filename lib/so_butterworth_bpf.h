@@ -8,9 +8,9 @@
 * LPF and Butterworth HPF.
 */
 #pragma once
-#include "filter_common.h"
+#include "biquad_butterworth.h"
 
-class SO_BUTTERWORTH_BPF : public Biquad {
+class SO_BUTTERWORTH_BPF : public BiquadButterworth {
 public:
     tp_coeffs& calculate_coeffs(float bw, int fc, int fs)
     {

@@ -6,9 +6,9 @@
 * Q , quality factor controlling width of peak or notch = 1/BW
 */
 #pragma once
-#include "filter_common.h"
+#include "biquad_q.h"
 
-class SO_BPF : public Biquad {
+class SO_BPF : public BiquadQ {
 public:
     tp_coeffs& calculate_coeffs(float Q, int fc, int fs)
     {

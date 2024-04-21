@@ -3,9 +3,9 @@
 * Dimitris Tassopoulos 2016-2020
 */
 #pragma once
-#include "filter_common.h"
+#include "biquad_simple.h"
 
-class FO_HPF : public Biquad {
+class FO_HPF : public BiquadSimple {
 public:
     tp_coeffs& calculate_coeffs(int fc, int fs)
     {

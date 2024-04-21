@@ -9,10 +9,9 @@
 * frequency and gain or attenuation value.
 */
 #pragma once
-#include "filter_common.h"
-#include "biquad_modified.h"
+#include "biquad_shelf.h"
 
-class FO_SHELVING_LOW : public BiquadModified {
+class FO_SHELVING_LOW : public BiquadShelf {
 public:
 	tp_coeffs& calculate_coeffs(float gain_db, int fc, int fs)
 	{

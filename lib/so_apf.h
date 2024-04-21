@@ -6,7 +6,7 @@
 * Q, steepness of phase shift at fc (second-order only)
 */
 #pragma once
-#include "filter_common.h"
+#include "biquad.h"
 
 class SO_APF : public Biquad {
 public:

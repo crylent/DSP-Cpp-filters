@@ -9,9 +9,9 @@
 * the resulting response is flat. They are often used in crossovers.
 */
 #pragma once
-#include "filter_common.h"
+#include "biquad_simple.h"
 
-class SO_LINKWITZ_RILEY_HPF : public Biquad {
+class SO_LINKWITZ_RILEY_HPF : public BiquadSimple {
 public:
     tp_coeffs& calculate_coeffs(int fc, int fs)
     {

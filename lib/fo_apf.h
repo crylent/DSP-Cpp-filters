@@ -5,9 +5,9 @@
 * fc, corner frequency
 */
 #pragma once
-#include "filter_common.h"
+#include "biquad_simple.h"
 
-class FO_APF : public Biquad {
+class FO_APF : public BiquadSimple {
 public:
     tp_coeffs& calculate_coeffs(int fc, int fs = 44100)
     {

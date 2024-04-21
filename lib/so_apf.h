@@ -10,6 +10,10 @@
 
 class SO_APF : public Biquad {
 public:
+    SO_APF(float Q, int fs) {
+        calculate_coeffs(Q, fs);
+    }
+
     tp_coeffs& calculate_coeffs(float Q, int fs)
     {
         coef_size_t a = (tan(pi*Q / fs) - 1.0) / (tan(pi*Q / fs) + 1.0);

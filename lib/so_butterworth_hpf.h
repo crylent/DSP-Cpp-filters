@@ -11,6 +11,8 @@
 #include "biquad_simple.h"
 
 class SO_BUTTERWORTH_HPF : public BiquadSimple {
+    using BiquadSimple::BiquadSimple;
+
 public:
     tp_coeffs& calculate_coeffs(int fc, int fs)
     {

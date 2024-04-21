@@ -3,6 +3,10 @@
 
 class BiquadShelf : public Biquad {
 public:
+    BiquadShelf(float gain_db, int fc, int fs) {
+        construct(gain_db, fc, fs);
+    }
+
     virtual tp_coeffs& calculate_coeffs(float gain_db, int fc, int fs) = 0;
 
     coef_size_t process(coef_size_t sample)
@@ -17,5 +21,10 @@ public:
         m_ynz2 = m_ynz1;
         m_ynz1 = yn;
     	return(yn);
+    }
+
+private:
+    void construct(float gain_db, int fc, int fs) {
+        calculate_coeffs(gain_db, fc, fs);
     }
 };

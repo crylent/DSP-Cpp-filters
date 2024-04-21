@@ -12,6 +12,8 @@
 #include "biquad_shelf.h"
 
 class FO_SHELVING_HIGH : public BiquadShelf {
+    using BiquadShelf::BiquadShelf;
+
 public:
 	tp_coeffs& calculate_coeffs(float gain_db, int fc, int fs)
 	{

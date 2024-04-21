@@ -9,6 +9,8 @@
 #include "biquad_q.h"
 
 class SO_LPF : public BiquadQ {
+    using BiquadQ::BiquadQ;
+
 public:
     tp_coeffs& calculate_coeffs(float Q, int fc, int fs)
     {

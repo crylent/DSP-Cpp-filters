@@ -8,9 +8,11 @@
 * LPF and Butterworth HPF.
 */
 #pragma once
-#include "biquad_butterworth.h"
+#include "biquad_band.h"
 
-class SO_BUTTERWORTH_BSF : public BiquadButterworth {
+class SO_BUTTERWORTH_BSF : public BiquadBand {
+    using BiquadBand::BiquadBand;
+
 public:
     tp_coeffs& calculate_coeffs(float bw, int fc, int fs)
     {

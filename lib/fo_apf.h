@@ -8,7 +8,10 @@
 #include "biquad_simple.h"
 
 class FO_APF : public BiquadSimple {
+    using BiquadSimple::BiquadSimple;
+
 public:
+
     tp_coeffs& calculate_coeffs(int fc, int fs = 44100)
     {
         coef_size_t a = (tan(pi*fc / fs) - 1.0) / (tan(pi*fc / fs) + 1.0);

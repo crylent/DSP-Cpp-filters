@@ -59,6 +59,9 @@ public:
 		return(m_offset);
 	}
 
+    virtual void set_fc(int fc) = 0;
+    virtual void set_fs(int fs) = 0;
+
     typedef struct {
     	coef_size_t a0;
     	coef_size_t a1;
@@ -72,4 +75,6 @@ public:
 protected:
     coef_size_t m_xnz1, m_xnz2, m_ynz1, m_ynz2, m_offset;
     tp_coeffs m_coeffs;
+
+    int m_fc, m_fs;
 };

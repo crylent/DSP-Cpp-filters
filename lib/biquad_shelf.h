@@ -9,7 +9,22 @@ public:
 
     virtual tp_coeffs& calculate_coeffs(float gain_db, int fc, int fs) = 0;
 
-    coef_size_t process(coef_size_t sample)
+    void set_gain(float gain_db) {
+        m_gain = gain_db;
+        calculate_coeffs(m_gain, m_fc, m_fs);
+    }
+
+    void set_fc(int fc) override {
+        m_fc = fc;
+        calculate_coeffs(m_gain, m_fc, m_fs);
+    }
+
+    void set_fs(int fs) override {
+        m_fs = fs;
+        calculate_coeffs(m_gain, m_fc, m_fs);
+    }
+
+    coef_size_t process(coef_size_t sample) override
     {
         coef_size_t xn = sample;
         coef_size_t ynn = m_coeffs.a0*xn + m_coeffs.a1*m_xnz1 + m_coeffs.a2*m_xnz2
@@ -25,6 +40,11 @@ public:
 
 private:
     void construct(float gain_db, int fc, int fs) {
+        m_gain = gain_db;
+        m_fc = fc;
+        m_fs = fs;
         calculate_coeffs(gain_db, fc, fs);
     }
+
+    float m_gain;
 };

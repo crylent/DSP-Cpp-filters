@@ -19,6 +19,11 @@ protected:
         calculate_coeffs(m_bw, m_fc, m_fs);
     }
 
+    void handle_set_param(Param param, Numeric value) override {
+        if (param == Param::BW) set_bw(value);
+        else set_param_error();
+    }
+
 private:
     void construct(float bw, int fc, int fs) {
         m_bw = bw;

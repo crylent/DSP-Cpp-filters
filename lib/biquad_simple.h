@@ -14,6 +14,10 @@ protected:
         calculate_coeffs(m_fc, m_fs);
     }
 
+    void handle_set_param(Param param, Numeric value) override {
+        set_param_error();
+    }
+
 private:
     void construct(int fc, int fs) {
         m_fc = fc;

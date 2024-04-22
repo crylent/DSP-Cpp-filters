@@ -19,6 +19,11 @@ protected:
         calculate_coeffs(m_Q, m_fc, m_fs);
     }
 
+    void handle_set_param(Param param, Numeric value) override {
+        if (param == Param::Q) set_Q(value);
+        else set_param_error();
+    }
+
 private:
     void construct(float Q, int fc, int fs) {
         m_Q = Q;

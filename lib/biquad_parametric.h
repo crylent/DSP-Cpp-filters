@@ -24,6 +24,12 @@ protected:
         calculate_coeffs(m_gain, m_Q, m_fc, m_fs);
     }
 
+    void handle_set_param(Param param, Numeric value) override {
+        if (param == Param::GAIN) set_gain(value);
+        else if (param == Param::Q) set_Q(value);
+        else set_param_error();
+    }
+
 private:
     void construct(float gain_db, float Q, int fc, int fs) {
         m_gain = gain_db;

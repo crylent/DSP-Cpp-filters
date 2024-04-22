@@ -34,6 +34,8 @@ public:
     typedef float coef_size_t;
 #endif
 
+    using Numeric = common_type<int, coef_size_t>::type;
+
     Biquad() : m_xnz1(0), m_xnz2(0), m_ynz1(0), m_ynz2(0), m_offset(0), m_coeffs{0} {};
     virtual ~Biquad() {};
 
@@ -68,6 +70,14 @@ public:
         recalculate_coeffs();
     }
 
+    enum class Param { FC, FS, Q, GAIN, BW };
+
+    void set_param(Param param, Numeric value) {
+        if (param == Param::FC) set_fc(value);
+        else if (param == Param::FS) set_fs(value);
+        else handle_set_param(param, value);
+    }
+
     typedef struct {
     	coef_size_t a0;
     	coef_size_t a1;
@@ -85,4 +95,9 @@ protected:
     int m_fc, m_fs;
 
     virtual void recalculate_coeffs() = 0;
+    virtual void handle_set_param(Param param, Numeric value) = 0;
+
+    void set_param_error() {
+        throw invalid_argument("Invalid parameter for the filter");
+    }
 };

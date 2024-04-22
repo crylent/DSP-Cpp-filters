@@ -9,6 +9,7 @@
 
 #include <cmath>
 #include <functional>
+#include <unordered_map>
 
 #define COEFF_SIZE_DOUBLE
 //#define COEFF_SIZE_FLOAT
@@ -76,6 +77,12 @@ public:
         if (param == Param::FC) set_fc(value);
         else if (param == Param::FS) set_fs(value);
         else handle_set_param(param, value);
+    }
+
+    void set_params(unordered_map<Param, Numeric> params) {
+        for (const auto& param : params) {
+            set_param(param.first, param.second);
+        }
     }
 
     typedef struct {

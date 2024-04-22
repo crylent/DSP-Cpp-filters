@@ -11,16 +11,11 @@ public:
 
     void set_Q(int Q) {
         m_Q = Q;
-        calculate_coeffs(m_Q, m_fc, m_fs);
+        recalculate_coeffs();
     }
 
-    void set_fc(int fc) override {
-        m_fc = fc;
-        calculate_coeffs(m_Q, m_fc, m_fs);
-    }
-
-    void set_fs(int fs) override {
-        m_fs = fs;
+protected:
+    void recalculate_coeffs() override {
         calculate_coeffs(m_Q, m_fc, m_fs);
     }
 

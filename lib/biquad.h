@@ -59,8 +59,14 @@ public:
 		return(m_offset);
 	}
 
-    virtual void set_fc(int fc) = 0;
-    virtual void set_fs(int fs) = 0;
+    void set_fc(int fc) {
+        m_fc = fc;
+        recalculate_coeffs();
+    }
+    void set_fs(int fs) {
+        m_fs = fs;
+        recalculate_coeffs();
+    }
 
     typedef struct {
     	coef_size_t a0;
@@ -77,4 +83,6 @@ protected:
     tp_coeffs m_coeffs;
 
     int m_fc, m_fs;
+
+    virtual void recalculate_coeffs() = 0;
 };

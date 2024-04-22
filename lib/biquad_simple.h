@@ -9,13 +9,8 @@ public:
 
     virtual tp_coeffs& calculate_coeffs(int fc, int fs) = 0;
 
-    void set_fc(int fc) override {
-        m_fc = fc;
-        calculate_coeffs(m_fc, m_fs);
-    }
-
-    void set_fs(int fs) override {
-        m_fs = fs;
+protected:
+    void recalculate_coeffs() override {
         calculate_coeffs(m_fc, m_fs);
     }
 

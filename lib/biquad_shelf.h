@@ -11,17 +11,7 @@ public:
 
     void set_gain(float gain_db) {
         m_gain = gain_db;
-        calculate_coeffs(m_gain, m_fc, m_fs);
-    }
-
-    void set_fc(int fc) override {
-        m_fc = fc;
-        calculate_coeffs(m_gain, m_fc, m_fs);
-    }
-
-    void set_fs(int fs) override {
-        m_fs = fs;
-        calculate_coeffs(m_gain, m_fc, m_fs);
+        recalculate_coeffs();
     }
 
     coef_size_t process(coef_size_t sample) override
@@ -36,6 +26,11 @@ public:
         m_ynz2 = m_ynz1;
         m_ynz1 = yn;
     	return(yn);
+    }
+
+protected:
+    void recalculate_coeffs() override {
+        calculate_coeffs(m_gain, m_fc, m_fs);
     }
 
 private:

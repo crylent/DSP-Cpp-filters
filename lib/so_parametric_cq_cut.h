@@ -24,7 +24,7 @@ class SO_PARAMETRIC_CQ_CUT : public BiquadParametric {
     using BiquadParametric::BiquadParametric;
 
 public:
-    tp_coeffs calculate_coeffs(float gain_db, float Q, int fc, int fs)
+    tp_coeffs& calculate_coeffs(float gain_db, float Q, int fc, int fs)
 	{
         coef_size_t K = 2.0 * pi * fc / fs;
         coef_size_t V0 = pow(10.0, gain_db / 20.0);
@@ -40,6 +40,6 @@ public:
         m_coeffs.b2 = h / e;
         m_coeffs.c0 = 1.0;
         m_coeffs.d0 = 0.0;
-        return(m_coeffs);
+        return(std::ref(m_coeffs));
     }
 };

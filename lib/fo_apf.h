@@ -8,9 +8,10 @@
 #include "biquad_simple.h"
 
 class FO_APF : public BiquadSimple {
-    using BiquadSimple::BiquadSimple;
-
 public:
+    FO_APF(float fc, int fs) {
+        construct(fc, fs);
+    }
 
     tp_coeffs& calculate_coeffs(float fc, int fs = 44100)
     {

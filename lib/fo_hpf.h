@@ -6,9 +6,11 @@
 #include "biquad_simple.h"
 
 class FO_HPF : public BiquadSimple {
-    using BiquadSimple::BiquadSimple;
-
 public:
+    FO_HPF(float fc, int fs) {
+        construct(fc, fs);
+    }
+
     tp_coeffs& calculate_coeffs(float fc, int fs)
     {
         coef_size_t th = 2.0 * pi * fc / fs;

@@ -12,9 +12,11 @@
 #include "biquad_simple.h"
 
 class SO_LINKWITZ_RILEY_HPF : public BiquadSimple {
-    using BiquadSimple::BiquadSimple;
-
 public:
+    SO_LINKWITZ_RILEY_HPF(float fc, int fs) {
+        construct(fc, fs);
+    }
+
     tp_coeffs& calculate_coeffs(float fc, int fs)
     {
         coef_size_t th = pi * fc / fs;

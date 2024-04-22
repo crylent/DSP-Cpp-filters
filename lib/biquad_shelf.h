@@ -3,10 +3,6 @@
 
 class BiquadShelf : public Biquad {
 public:
-    BiquadShelf(float gain_db, float fc, int fs) {
-        construct(gain_db, fc, fs);
-    }
-
     virtual tp_coeffs& calculate_coeffs(float gain_db, float fc, int fs) = 0;
 
     void set_gain(float gain_db) {
@@ -38,13 +34,13 @@ protected:
         else set_param_error();
     }
 
-private:
     void construct(float gain_db, float fc, int fs) {
         m_gain = gain_db;
         m_fc = fc;
         m_fs = fs;
-        calculate_coeffs(gain_db, fc, fs);
+        recalculate_coeffs();
     }
 
+private:
     float m_gain;
 };

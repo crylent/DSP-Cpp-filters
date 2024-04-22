@@ -12,10 +12,12 @@
 #include "biquad_shelf.h"
 
 class FO_SHELVING_LOW : public BiquadShelf {
-    using BiquadShelf::BiquadShelf;
-
 public:
-	tp_coeffs& calculate_coeffs(float gain_db, float fc, int fs)
+    FO_SHELVING_LOW(float gain_db, float fc, int fs) {
+        construct(gain_db, fc, fs);
+    }
+
+    tp_coeffs& calculate_coeffs(float gain_db, float fc, int fs)
 	{
 		coef_size_t th = 2.0 * pi * fc / fs;
 		coef_size_t m = pow(10.0, gain_db / 20.0);

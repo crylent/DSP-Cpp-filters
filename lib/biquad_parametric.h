@@ -3,10 +3,6 @@
 
 class BiquadParametric : public Biquad {
 public:
-    BiquadParametric(float gain_db, float Q, float fc, int fs) {
-        construct(gain_db, Q, fc, fs);
-    }
-
     virtual tp_coeffs& calculate_coeffs(float gain_db, float Q, float fc, int fs) = 0;
 
     void set_gain(float gain_db) {
@@ -30,14 +26,14 @@ protected:
         else set_param_error();
     }
 
-private:
     void construct(float gain_db, float Q, float fc, int fs) {
         m_gain = gain_db;
         m_Q = Q;
         m_fc = fc;
         m_fs = fs;
-        calculate_coeffs(gain_db, Q, fc, fs);
+        recalculate_coeffs();
     }
 
+private:
     float m_gain, m_Q;
 };

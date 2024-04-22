@@ -12,9 +12,11 @@
 #include <complex>
 
 class SO_BUTTERWORTH_LPF : public BiquadSimple {
-    using BiquadSimple::BiquadSimple;
-
 public:
+    SO_BUTTERWORTH_LPF(float fc, int fs) {
+        construct(fc, fs);
+    }
+
     tp_coeffs& calculate_coeffs(float fc, int fs)
     {
         coef_size_t c = 1.0 / (std::tan(pi*fc / fs));

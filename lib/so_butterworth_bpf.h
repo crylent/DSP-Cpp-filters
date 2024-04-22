@@ -11,9 +11,11 @@
 #include "biquad_band.h"
 
 class SO_BUTTERWORTH_BPF : public BiquadBand {
-    using BiquadBand::BiquadBand;
-
 public:
+    SO_BUTTERWORTH_BPF(float bw, float fc, int fs) {
+        construct(bw, fc, fs);
+    }
+
     tp_coeffs& calculate_coeffs(float bw, float fc, int fs)
     {
         coef_size_t c = 1.0 / (tan(pi*fc*bw / fs));

@@ -21,9 +21,11 @@
 #include "biquad_parametric.h"
 
 class SO_PARAMETRIC_NCQ : public BiquadParametric {
-    using BiquadParametric::BiquadParametric;
-
 public:
+    SO_PARAMETRIC_NCQ(float gain_db, float Q, float fc, int fs) {
+        construct(gain_db, Q, fc, fs);
+    }
+
     tp_coeffs& calculate_coeffs(float gain_db, float Q, float fc, int fs)
     {
         coef_size_t w = 2.0 * pi * fc / fs;

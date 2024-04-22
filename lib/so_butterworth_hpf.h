@@ -11,9 +11,11 @@
 #include "biquad_simple.h"
 
 class SO_BUTTERWORTH_HPF : public BiquadSimple {
-    using BiquadSimple::BiquadSimple;
-
 public:
+    SO_BUTTERWORTH_HPF(float fc, int fs) {
+        construct(fc, fs);
+    }
+
     tp_coeffs& calculate_coeffs(float fc, int fs)
     {
         coef_size_t c = tan(pi*fc / fs);

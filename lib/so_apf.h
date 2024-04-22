@@ -9,9 +9,11 @@
 #include "biquad_q.h"
 
 class SO_APF : public BiquadQ {
-    using BiquadQ::BiquadQ;
-
 public:
+    SO_APF(float Q, float fc, int fs) {
+        construct(Q, fc, fs);
+    }
+
     tp_coeffs& calculate_coeffs(float Q, float fc, int fs)
     {
         coef_size_t bw = fc / Q;

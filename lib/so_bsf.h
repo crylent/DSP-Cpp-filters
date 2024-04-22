@@ -12,7 +12,7 @@ class SO_BSF : public BiquadQ {
     using BiquadQ::BiquadQ;
 
 public:
-    tp_coeffs& calculate_coeffs(float Q, int fc, int fs)
+    tp_coeffs& calculate_coeffs(float Q, float fc, int fs)
     {
         coef_size_t w = 2.0 * pi * fc / fs;
         coef_size_t b = 0.5*((1.0 - tan(w / (2.0*Q))) / (1.0 + tan(w / (2.0*Q))));

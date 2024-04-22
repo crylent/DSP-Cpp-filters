@@ -3,13 +3,13 @@
 
 class BiquadQ : public Biquad {
 public:
-    BiquadQ(float Q, int fc, int fs) {
+    BiquadQ(float Q, float fc, int fs) {
         construct(Q, fc, fs);
     }
 
-    virtual tp_coeffs& calculate_coeffs(float Q, int fc, int fs) = 0;
+    virtual tp_coeffs& calculate_coeffs(float Q, float fc, int fs) = 0;
 
-    void set_Q(int Q) {
+    void set_Q(float Q) {
         m_Q = Q;
         recalculate_coeffs();
     }
@@ -25,7 +25,7 @@ protected:
     }
 
 private:
-    void construct(float Q, int fc, int fs) {
+    void construct(float Q, float fc, int fs) {
         m_Q = Q;
         m_fc = fc;
         m_fs = fs;

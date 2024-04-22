@@ -15,7 +15,7 @@ class SO_LINKWITZ_RILEY_HPF : public BiquadSimple {
     using BiquadSimple::BiquadSimple;
 
 public:
-    tp_coeffs& calculate_coeffs(int fc, int fs)
+    tp_coeffs& calculate_coeffs(float fc, int fs)
     {
         coef_size_t th = pi * fc / fs;
         coef_size_t Wc = pi * fc;

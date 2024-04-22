@@ -14,7 +14,7 @@ class SO_BUTTERWORTH_BPF : public BiquadBand {
     using BiquadBand::BiquadBand;
 
 public:
-    tp_coeffs& calculate_coeffs(float bw, int fc, int fs)
+    tp_coeffs& calculate_coeffs(float bw, float fc, int fs)
     {
         coef_size_t c = 1.0 / (tan(pi*fc*bw / fs));
         coef_size_t d = 2.0 * cos(2.0 * pi * fc / fs);

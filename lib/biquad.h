@@ -62,7 +62,7 @@ public:
 		return(m_offset);
 	}
 
-    void set_fc(int fc) {
+    void set_fc(float fc) {
         m_fc = fc;
         recalculate_coeffs();
     }
@@ -99,7 +99,8 @@ protected:
     coef_size_t m_xnz1, m_xnz2, m_ynz1, m_ynz2, m_offset;
     tp_coeffs m_coeffs;
 
-    int m_fc, m_fs;
+    float m_fc;
+    int m_fs;
 
     virtual void recalculate_coeffs() = 0;
     virtual void handle_set_param(Param param, Numeric value) = 0;

@@ -12,7 +12,7 @@ class SO_APF : public BiquadQ {
     using BiquadQ::BiquadQ;
 
 public:
-    tp_coeffs& calculate_coeffs(float Q, int fc, int fs)
+    tp_coeffs& calculate_coeffs(float Q, float fc, int fs)
     {
         coef_size_t bw = fc / Q;
         coef_size_t a = (tan(pi*bw / fs) - 1.0) / (tan(pi*bw / fs) + 1.0);

@@ -12,7 +12,7 @@ class FO_APF : public BiquadSimple {
 
 public:
 
-    tp_coeffs& calculate_coeffs(int fc, int fs = 44100)
+    tp_coeffs& calculate_coeffs(float fc, int fs = 44100)
     {
         coef_size_t a = (tan(pi*fc / fs) - 1.0) / (tan(pi*fc / fs) + 1.0);
         m_coeffs.a0 = a;

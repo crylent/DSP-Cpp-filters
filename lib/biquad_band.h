@@ -3,13 +3,13 @@
 
 class BiquadBand : public Biquad {
 public:
-    BiquadBand(float bw, int fc, int fs) {
+    BiquadBand(float bw, float fc, int fs) {
         construct(bw, fc, fs);
     }
 
-    virtual tp_coeffs& calculate_coeffs(float bw, int fc, int fs) = 0;
+    virtual tp_coeffs& calculate_coeffs(float bw, float fc, int fs) = 0;
 
-    void set_bw(int bw) {
+    void set_bw(float bw) {
         m_bw = bw;
         recalculate_coeffs();
     }
@@ -25,7 +25,7 @@ protected:
     }
 
 private:
-    void construct(float bw, int fc, int fs) {
+    void construct(float bw, float fc, int fs) {
         m_bw = bw;
         m_fc = fc;
         m_fs = fs;

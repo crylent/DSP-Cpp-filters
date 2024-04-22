@@ -9,7 +9,7 @@ class FO_LPF : public BiquadSimple {
     using BiquadSimple::BiquadSimple;
 
 public:
-    tp_coeffs& calculate_coeffs(int fc, int fs)
+    tp_coeffs& calculate_coeffs(float fc, int fs)
     {
         coef_size_t th = 2.0 * pi * fc / fs;
         coef_size_t g = cos(th) / (1.0 + sin(th));

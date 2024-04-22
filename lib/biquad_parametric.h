@@ -3,18 +3,18 @@
 
 class BiquadParametric : public Biquad {
 public:
-    BiquadParametric(float gain_db, float Q, int fc, int fs) {
+    BiquadParametric(float gain_db, float Q, float fc, int fs) {
         construct(gain_db, Q, fc, fs);
     }
 
-    virtual tp_coeffs& calculate_coeffs(float gain_db, float Q, int fc, int fs) = 0;
+    virtual tp_coeffs& calculate_coeffs(float gain_db, float Q, float fc, int fs) = 0;
 
-    void set_gain(int gain_db) {
+    void set_gain(float gain_db) {
         m_gain = gain_db;
         recalculate_coeffs();
     }
 
-    void set_Q(int Q) {
+    void set_Q(float Q) {
         m_Q = Q;
         recalculate_coeffs();
     }
@@ -31,7 +31,7 @@ protected:
     }
 
 private:
-    void construct(float gain_db, float Q, int fc, int fs) {
+    void construct(float gain_db, float Q, float fc, int fs) {
         m_gain = gain_db;
         m_Q = Q;
         m_fc = fc;

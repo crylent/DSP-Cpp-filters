@@ -24,7 +24,7 @@ class SO_PARAMETRIC_CQ_BOOST : public BiquadParametric {
     using BiquadParametric::BiquadParametric;
 
 public:
-    tp_coeffs& calculate_coeffs(float gain_db, float Q, int fc, int fs)
+    tp_coeffs& calculate_coeffs(float gain_db, float Q, float fc, int fs)
     {
         coef_size_t K = 2.0 * pi * fc / fs;
         coef_size_t V0 = pow(10.0, gain_db / 20.0);

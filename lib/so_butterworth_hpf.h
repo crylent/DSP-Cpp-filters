@@ -14,7 +14,7 @@ class SO_BUTTERWORTH_HPF : public BiquadSimple {
     using BiquadSimple::BiquadSimple;
 
 public:
-    tp_coeffs& calculate_coeffs(int fc, int fs)
+    tp_coeffs& calculate_coeffs(float fc, int fs)
     {
         coef_size_t c = tan(pi*fc / fs);
         m_coeffs.a0 = 1.0 / (1.0 + sqrt2*c + pow(c, 2.0));

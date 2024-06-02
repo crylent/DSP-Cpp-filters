@@ -95,6 +95,10 @@ public:
     	coef_size_t d0;
     } tp_coeffs;
 
+    tp_coeffs& get_coeffs() {
+        return m_coeffs;
+    }
+
 protected:
     coef_size_t m_xnz1, m_xnz2, m_ynz1, m_ynz2, m_offset;
     tp_coeffs m_coeffs;

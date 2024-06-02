@@ -1,3 +1,30 @@
+What's the difference with [dimtass/DSP-Cpp-filters](https://github.com/dimtass/DSP-Cpp-filters)?
+----
+Filters are classified into 5 types depending on a set of parameters:
+- BiquadSimple (`fc` and `fs` only)
+- BiquadShelf (`gain_db`, `fc` and `fs`)
+- BiquadQ (`Q`, `fc` and `fs`)
+- BiquadBand (`bw`, `fc` and `fs`)
+- BiquadParametric (`gain_db`, `Q`, `fc` and `fs`)
+
+`fc` is corner frequency, `fs` is sample rate, `bw` is bandwidth, `Q` is quality factor.
+
+Filter parameters are now set in the constructor. You need to call calculate_coeffs() function (which has been made virtual) only when you want to change them all at the same time. Added set_param(), set_fc(), set_fs(), set_gain(), set_Q(), set_bw() functions for the case when you want to change only one parameter. 
+
+Example of usage from [my Android MIDI library](https://github.com/crylent/android-midilib):
+```cpp
+template<class FilterClass> requires(is_base_of<BiquadSimple, FilterClass>() == true)
+void Filter::activateFilter() {
+    mActiveFilter = make_unique<FilterClass>(mFrequency, AudioEngine::getSampleRate());
+}
+
+float Filter::process(float sample) {
+    return mActiveFilter->process(sample);
+}
+```
+
+[See the full code](https://github.com/crylent/android-midilib/blob/master/library/src/main/cpp/soundfx/Filter.cpp)
+
 DSP filters in C++
 ----
 
@@ -51,7 +78,7 @@ The above command will build the tests and run them.
 much sense for testing using unit-tests, but anyways, I've added them
 
 ## Usage:
-The filters can be used in your C++ code in the part where the audio sample is about to be processed. You need to include the _filter_common.h_ and _filter_includes.h_ files and the create an object with filter(s) you want to apply and calculate the coefficients with the calculate_coeffs() function. Then in the sample processing function run the filter() function with the current sample as a parameter.
+The filters can be used in your C++ code in the part where the audio sample is about to be processed. You need to include the _filter_includes.h_ file and create an object with filter you want to apply. Filter parameters can be changed with calculate_coeffs() function. Then in the sample processing function run the filter() function with the current sample as a parameter.
 
 I've used [RackAFX](http://www.willpirkle.com/rackafx/) to test these filters.
 
@@ -68,13 +95,11 @@ Then add this code inside:
 ```cpp
 #include <iostream>
 #include <memory>
-#include "filter_common.h"
 #include "filter_includes.h"
 
 int main() {
-    std::unique_ptr<SO_LPF> filter (new SO_LPF);
-
-    auto coeffs = filter->calculate_coeffs(1.0, 5000, 96000);
+    auto filter = std::make_unique<SO_LPF>(1.0, 5000, 96000);
+    auto coeffs = filter->get_coeffs();
     auto yn = filter->process(0.303);
 
     std::cout << "Coeffs: " << std::endl;
